@@ -2,6 +2,8 @@ const Koa = require('koa');
 
 const bodyParser = require('koa-bodyparser');
 
+const jwt = require('koa-jwt')
+
 const controller = require('./controller');
 
 const templating = require('./templating');
@@ -9,6 +11,12 @@ const templating = require('./templating');
 const app = new Koa();
 
 const isProduction = process.env.NODE_ENV === 'production';
+
+/*
+app.use(jwt({  
+  secret: 'very-secret' 
+}))
+*/
 
 // log request URL:
 app.use(async (ctx, next) => {
