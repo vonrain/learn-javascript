@@ -15,7 +15,7 @@ module.exports = {
         ctx.response.body = {
             products: products
         };
-    }
+    },
     'POST /api/products': async (ctx, next) => {
         var p = {
             name: ctx.request.body.name,

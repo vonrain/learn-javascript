@@ -10,7 +10,13 @@ module.exports = {
     },
 
     'POST /api/products': async (ctx, next) => {
-        var p = products.createProduct(ctx.request.body.name, ctx.request.body.manufacturer, parseFloat(ctx.request.body.price));
+        var name = ctx.request.body.name;
+        if (name){
+            var p = products.createProduct(ctx.request.body.name, ctx.request.body.manufacturer, parseFloat(ctx.request.body.price));
+        }
+        else {
+            throw new APIError('product:name_not_found', 'name not found.');
+        }
         ctx.rest(p);
     },
 
