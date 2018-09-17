@@ -1,4 +1,5 @@
-import { port, connexionString, secret } from './config/index'
+const connexionString = require('./config/index');
+const secret = require('./config/index');
 
 const Koa = require('koa');
 

@@ -1,11 +1,8 @@
-import mongoose from 'mongoose'
-import bcrypt from 'bcrypt'
-import jsonwebtoken from 'jsonwebtoken'
-// ensure import UserModel before use model('user')
-import UserModel from '../../models/User.model'
-import { secret } from '../config/index';
-
-
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jsonwebtoken = require('jsonwebtoken');
+const UserModel = require('../../models/User.model');
+const secret = require('../config/index');
 const User = mongoose.model('User');
 
 var fn_register = async (ctx, next) =>{
