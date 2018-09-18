@@ -1,4 +1,4 @@
-export default (ctx, next) => {
+var fn_errorHandle = async (ctx, next) =>{
   return next().catch((err) => {
     if (err.status === 401) {
       ctx.status = 401;
@@ -9,4 +9,5 @@ export default (ctx, next) => {
       throw err;
     }
   });
-}
+};
+module.exports = fn_errorHandle;

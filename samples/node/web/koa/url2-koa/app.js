@@ -1,5 +1,4 @@
-const connexionString = require('./config/index');
-const secret = require('./config/index');
+const config= require('./config');
 
 const Koa = require('koa');
 
@@ -10,9 +9,10 @@ const controller = require('./controller');
 const jwt = require('koa-jwt');
 
 const errorHandle = require('./middlewares/errorHandle');
-mongoose.connect(connexionString)
-// mongoose promise 风格 [mongoose.Promise = require('bluebird')]
-mongoose.Promise = global.Promise
+const mongoose = require('koa-mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(config.connexionString);
+
 
 const app = new Koa();
 // log request URL:
@@ -21,9 +21,9 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-app.use(errorHandle);
+app.use(errorHandle());
 app.use(jwt({
-    secret,
+    config.secret,
 }).unless({
     path:[/\/register/, /\/login/],
 }));
