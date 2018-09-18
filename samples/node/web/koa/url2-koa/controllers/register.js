@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
-const UserModel = require('../../models/User.model');
-const secret = require('../config/index');
+const UserModel = require('../models/User.model');
+const config = require('../config');
 const User = mongoose.model('User');
 
 var fn_register = async (ctx, next) =>{

@@ -9,7 +9,8 @@ const controller = require('./controller');
 const jwt = require('koa-jwt');
 
 const errorHandle = require('./middlewares/errorHandle');
-const mongoose = require('koa-mongoose');
+const mongoose = require('mongoose');
+
 mongoose.Promise = global.Promise;
 mongoose.connect(config.connexionString);
 
@@ -21,9 +22,9 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-app.use(errorHandle());
+app.use(errorHandle);
 app.use(jwt({
-    config.secret,
+    secret:config.secret
 }).unless({
     path:[/\/register/, /\/login/],
 }));
