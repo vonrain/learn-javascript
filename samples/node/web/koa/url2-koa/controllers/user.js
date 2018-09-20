@@ -7,11 +7,9 @@ var fn_users = async (ctx, next) =>{
     /** you can get uers with it
      * curl -X GET http://localhost:3200/api/users -H 'authorization: Bearer token' -H 'cache-control: no-cache'
      */
-    async getUsers(ctx) {
-        const users = await User.find()
-        ctx.body = {
-            users,
-        }
+    const users = await User.find()
+    ctx.body = {
+    	users,
     }
 };
 module.exports = {

@@ -3,9 +3,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jsonwebtoken = require('jsonwebtoken');
-const UserModel = require('../models/User.model');
+const User = require('../models/User.model');
 const config = require('../config');
-const User = mongoose.model('User');
 
 var fn_login = async (ctx, next) =>{
     const { body } = ctx.request
@@ -28,7 +27,7 @@ var fn_login = async (ctx, next) =>{
                 token: jsonwebtoken.sign({
                     data: user,
                     // 设置 token 过期时间
-                    exp: Math.floor(Date.now() / 1000) + (60 * 60), // 60 seconds * 60 minutes = 1 hour
+                    exp: Math.floor(Date.now() / 1000) + ( 60 * 60), // 60 seconds * 60 minutes = 1 hour
                 }, config.secret),
             }
         } else {
